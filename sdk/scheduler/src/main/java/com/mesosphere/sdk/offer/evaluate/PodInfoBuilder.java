@@ -379,7 +379,8 @@ public class PodInfoBuilder {
         // Inject Framework Name (raw, not safe for use in hostnames)
         environmentMap.put(EnvConstants.FRAMEWORK_NAME_TASKENV, serviceName);
         // Inject Framework pod host domain (with hostname-safe framework name)
-        environmentMap.put(EnvConstants.FRAMEWORK_HOST_TASKENV, EndpointUtils.toAutoIpDomain(serviceName));
+        String serviceDiscoveryDomain = System.getenv().getOrDefault("SERVICE_DISCOVERY_TLD", Constants.MESOS_DNS_TLD);
+        environmentMap.put(EnvConstants.FRAMEWORK_HOST_TASKENV, EndpointUtils.toCustomDomain(serviceName, serviceDiscoveryDomain));
         // Inject Framework VIP domain (with hostname-safe framework name)
         environmentMap.put(EnvConstants.FRAMEWORK_VIP_HOST_TASKENV, EndpointUtils.toVipDomain(serviceName));
         // Inject Scheduler API hostname (with hostname-safe scheduler name)

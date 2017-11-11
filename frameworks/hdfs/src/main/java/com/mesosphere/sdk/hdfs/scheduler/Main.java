@@ -4,6 +4,7 @@ import com.mesosphere.sdk.api.EndpointUtils;
 import com.mesosphere.sdk.api.types.EndpointProducer;
 import com.mesosphere.sdk.config.TaskEnvRouter;
 import com.mesosphere.sdk.curator.CuratorUtils;
+import com.mesosphere.sdk.offer.Constants;
 import com.mesosphere.sdk.offer.evaluate.placement.AndRule;
 import com.mesosphere.sdk.offer.evaluate.placement.PlacementRule;
 import com.mesosphere.sdk.offer.evaluate.placement.TaskTypeRule;
@@ -76,7 +77,8 @@ public class Main {
         // Simulate the envvars that would be passed to a task. We want to render the config as though it was being done
         // in a task. Manually copy over a couple envvars which is included in tasks by default.
         Map<String, String> env = new HashMap<>(new TaskEnvRouter().getConfig("ALL"));
-        env.put(EnvConstants.FRAMEWORK_HOST_TASKENV, EndpointUtils.toAutoIpDomain(serviceName));
+        String serviceDiscoveryDomain = System.getenv().getOrDefault("SERVICE_DISCOVERY_TLD", Constants.MESOS_DNS_TLD);
+        env.put(EnvConstants.FRAMEWORK_HOST_TASKENV, EndpointUtils.toCustomDomain(serviceName, serviceDiscoveryDomain));
         env.put(EnvConstants.FRAMEWORK_NAME_TASKENV, serviceName);
         env.put("MESOS_SANDBOX", "sandboxpath");
         env.put(SERVICE_ZK_ROOT_TASKENV, CuratorUtils.getServiceRootPath(serviceName));

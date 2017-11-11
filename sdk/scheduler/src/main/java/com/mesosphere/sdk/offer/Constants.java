@@ -44,6 +44,11 @@ public class Constants {
     public static final String DNS_TLD = "autoip.dcos.thisdcos.directory";
 
     /**
+     * TLD for mesos-based DNS.
+     * */
+    public static final String MESOS_DNS_TLD = "mesos";
+
+    /**
      * The visibility setting to use by default in Mesos Ports, for VIP ports. Non-VIP ports are currently hidden by
      * default.
      *

@@ -70,6 +70,13 @@ public class EndpointUtils {
     }
 
     /**
+     * Returns the correct custom DNS domain of a service.
+     */
+    public static String toCustomDomain(String serviceName, String customDomain) {
+        return String.format("%s.%s", removeSlashes(serviceName), customDomain);
+    }
+
+    /**
      * Returns the correct L4LB VIP hostname for the provided task running within the provided service.
      */
     public static String toVipHostname(String serviceName, VipInfo vipInfo) {

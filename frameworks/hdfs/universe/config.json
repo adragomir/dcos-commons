@@ -25,6 +25,11 @@
           "type": "string",
           "default": ""
         },
+        "service_discovery_tld": {
+          "description": "The service discovery top level domain used by the nodes",
+          "type": "string",
+          "default": "mesos"
+        },
         "user": {
           "type": "string",
           "description": "The linux user used to run the scheduler and all executors.",
