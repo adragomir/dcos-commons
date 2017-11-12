@@ -52,10 +52,10 @@ ssl.enabled.protocols=TLSv1.2
 
 security.inter.broker.protocol=SSL
 {{#KAFKA_ALLOW_PLAINTEXT}}
-advertised.listeners=PLAINTEXT://kafka-{{POD_INSTANCE_INDEX}}-broker.{{FRAMEWORK_NAME}}.autoip.dcos.thisdcos.directory:{{KAFKA_BROKER_PORT}},SSL://kafka-{{POD_INSTANCE_INDEX}}-broker.{{FRAMEWORK_NAME}}.autoip.dcos.thisdcos.directory:{{KAFKA_BROKER_PORT_TLS}}
+advertised.listeners=PLAINTEXT://kafka-{{POD_INSTANCE_INDEX}}-broker.{{FRAMEWORK_NAME}}.{{SERVICE_DISCOVERY_TLD}}:{{KAFKA_BROKER_PORT}},SSL://kafka-{{POD_INSTANCE_INDEX}}-broker.{{FRAMEWORK_NAME}}.{{SERVICE_DISCOVERY_TLD}}:{{KAFKA_BROKER_PORT_TLS}}
 {{/KAFKA_ALLOW_PLAINTEXT}}
 {{^KAFKA_ALLOW_PLAINTEXT}}
-advertised.listeners=SSL://kafka-{{POD_INSTANCE_INDEX}}-broker.{{FRAMEWORK_NAME}}.autoip.dcos.thisdcos.directory:{{KAFKA_BROKER_PORT_TLS}}
+advertised.listeners=SSL://kafka-{{POD_INSTANCE_INDEX}}-broker.{{FRAMEWORK_NAME}}.{{SERVICE_DISCOVERY_TLD}}:{{KAFKA_BROKER_PORT_TLS}}
 {{/KAFKA_ALLOW_PLAINTEXT}}
 
 {{#KAFKA_ALLOW_PLAINTEXT}}

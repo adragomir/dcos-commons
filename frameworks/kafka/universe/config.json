@@ -61,6 +61,11 @@
             "type": "boolean",
             "default":  false
           },
+          "service_discovery_tld": {
+            "description": "The service discovery top level domain used by the nodes",
+            "type": "string",
+            "default": "mesos"
+          },
           "tls": {
             "description": "Enable TLS support (requires Enterprise DC/OS running in strict security mode).",
             "type": "boolean",
