@@ -223,7 +223,7 @@ public class MesosResourcePool {
             unreservedSharedNamedPool.put(resourceName, newUnreservedSharedNamedResources);
         }
 
-        if (!sufficientResource.isPresent()) {
+        if (!sufficientResource.isPresent() && sharedNamedResources != null) {
             logger.info("Offered quantity in all {} instances of {} is insufficient: desired {}",
                     sharedNamedResources.size(),
                     resourceName,
